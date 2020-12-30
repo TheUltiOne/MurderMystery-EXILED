@@ -7,9 +7,9 @@ using CommandSystem;
 
 using RemoteAdmin;
 
-using EPlayer = Exiled.API.Features.Player;
+using Exiled.API.Features;
 
-namespace MurderMystery
+namespace MurderMystery.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
     class SetMurder : ICommand
@@ -26,7 +26,7 @@ namespace MurderMystery
             {
                 if (sender is PlayerCommandSender player)
                 {
-                    EPlayer pplayer = EPlayer.Get(player.SenderId);
+                    Player pplayer = Player.Get(player.SenderId);
                     if (Permissions.CheckPermission(sender, "murd.set"))
                     {
                         var old = Handlers.Server.intruders.FirstOrDefault();
@@ -35,9 +35,9 @@ namespace MurderMystery
                         Handlers.Server.bystanders.Add(old);
                         Handlers.Server.intruders.Clear();
                         old.Inventory.AddNewItem(ItemType.GunUSP, s: 0, b: 0, o: 0);
-                        Handlers.Server.intruders.Add(EPlayer.Get(arguments.ElementAt(0)));
+                        Handlers.Server.intruders.Add(Player.Get(arguments.ElementAt(0)));
 
-                        response = "Okay big gay";
+                        response = "Done!";
                         return true;
                     }
                 }

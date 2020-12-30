@@ -1,35 +1,35 @@
 ﻿using System;
 using System.Linq;
 
+using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
 
 using CommandSystem;
+
 using RemoteAdmin;
 
-using EPlayer = Exiled.API.Features.Player;
 
-namespace MurderMystery
+namespace MurderMystery.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
-    class GetMurderer : ICommand
+    class Disable : ICommand
     {
 
-        public string Command => "getmurderer";
+        public string Command => "disable";
 
         public string[] Aliases => Array.Empty<string>();
 
-        public string Description => "Gets the murderer";
+        public string Description => "Disables the gamemode";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             {
                 if (sender is PlayerCommandSender player)
                 {
-                    EPlayer pplayer = EPlayer.Get(player.SenderId);
-                    if (Permissions.CheckPermission(sender, "murd.get"))
+                    Player pplayer = Player.Get(player.SenderId);
+                    if (Permissions.CheckPermission(sender, "murd.disab"))
                     {
-                        response = $"The murderer is {Handlers.Server.intruders.FirstOrDefault().Nickname}.";
-                        return true;
+                        MurderMystery.Instance.OnDisabled();
                     }
                 }
                 response = "Use from the game console";
