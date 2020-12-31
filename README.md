@@ -23,3 +23,6 @@ If the target was the CI intruder, congratulations, you win!
 Otherwise, the target will be saved and the attacker will die.
 
 The configs are explained and easy to understand in their file, I don't see the need to put them here.
+
+
+(For you devs out there that hate that it's in multiple handler files, this was one of my first plugins ok? I prefered it in multiple files)
