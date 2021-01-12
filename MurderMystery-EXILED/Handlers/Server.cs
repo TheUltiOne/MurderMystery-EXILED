@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Linq;
+
 using Exiled.API.Enums;
 using Exiled.Events.EventArgs;
+using Exiled.API.Extensions;
+
 using EPlayer = Exiled.API.Features.Player;
 using EMap = Exiled.API.Features.Map;
+
 using System.Collections.Generic;
 using Interactables.Interobjects.DoorUtils;
+
 using MEC;
 
 namespace MurderMystery.Handlers
@@ -16,6 +21,8 @@ namespace MurderMystery.Handlers
         public static List<EPlayer> scouts = EPlayer.List.ToList();
         public static List<EPlayer> intruders = EPlayer.List.ToList();
         public static List<EPlayer> bystanders = EPlayer.List.ToList();
+
+        private List<DoorType> lockedDoors = new List<DoorType>() { DoorType.Scp914, DoorType.Scp012, DoorType.CheckpointLczA, DoorType.CheckpointLczB, DoorType.LczArmory };
 
         public static bool RoundEndForced = false;
         public static bool CIWins = false;
@@ -90,7 +97,7 @@ namespace MurderMystery.Handlers
 
             foreach (DoorVariant door in EMap.Doors)
             {
-                if (door.name == "CHECKPOINT_LCZ_A" || door.name == "CHECKPOINT_LCZ_B" || door.name == "914" || door.name == "LCZ_ARMORY" || door.name == "012")
+                if (lockedDoors.Contains(door.Type()))
                 {
                     door.ServerChangeLock(DoorLockReason.SpecialDoorFeature, true);
                 }

@@ -24,6 +24,7 @@ namespace MurderMystery.Commands
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             {
+                /*
                 if (sender is PlayerCommandSender player)
                 {
                     Player pplayer = Player.Get(player.SenderId);
@@ -32,7 +33,8 @@ namespace MurderMystery.Commands
                     response = "Enabled gamemode!";
                     return true;
                 }
-                response = "Use from the game console";
+                */
+                response = "This command is disabled because it crashes your server.";
                 return false;
             }
         }
