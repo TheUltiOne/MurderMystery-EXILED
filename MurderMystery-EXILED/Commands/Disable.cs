@@ -11,7 +11,7 @@ using RemoteAdmin;
 
 namespace MurderMystery.Commands
 {
-    [CommandHandler(typeof(ClientCommandHandler))]
+    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     class Disable : ICommand
     {
 
@@ -27,10 +27,10 @@ namespace MurderMystery.Commands
                 if (sender is PlayerCommandSender player)
                 {
                     Player pplayer = Player.Get(player.SenderId);
-                    if (Permissions.CheckPermission(sender, "murd.disab"))
-                    {
-                        MurderMystery.Instance.OnDisabled();
-                    }
+                    MurderMystery.Instance.OnDisabled();
+
+                    response = "Disabled gamemode!";
+                    return true;
                 }
                 response = "Use from the game console";
                 return false;

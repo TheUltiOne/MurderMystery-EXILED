@@ -5,6 +5,7 @@ using Exiled.Events.EventArgs;
 using EPlayer = Exiled.API.Features.Player;
 using EMap = Exiled.API.Features.Map;
 using System.Collections.Generic;
+using Interactables.Interobjects.DoorUtils;
 using MEC;
 
 namespace MurderMystery.Handlers
@@ -87,11 +88,11 @@ namespace MurderMystery.Handlers
                 intruders.Remove(player);
             }
 
-            foreach (Door door in EMap.Doors)
+            foreach (DoorVariant door in EMap.Doors)
             {
-                if (door.DoorName == "CHECKPOINT_LCZ_A" || door.DoorName == "CHECKPOINT_LCZ_B" || door.DoorName == "914" || door.DoorName == "LCZ_ARMORY" || door.DoorName == "012")
+                if (door.name == "CHECKPOINT_LCZ_A" || door.name == "CHECKPOINT_LCZ_B" || door.name == "914" || door.name == "LCZ_ARMORY" || door.name == "012")
                 {
-                    door.Networklocked = true;
+                    door.ServerChangeLock(DoorLockReason.SpecialDoorFeature, true);
                 }
             }
         }

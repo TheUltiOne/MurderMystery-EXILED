@@ -11,7 +11,7 @@ using Exiled.API.Features;
 
 namespace MurderMystery.Commands
 {
-    [CommandHandler(typeof(ClientCommandHandler))]
+    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     class SetMurder : ICommand
     {
 
@@ -27,19 +27,16 @@ namespace MurderMystery.Commands
                 if (sender is PlayerCommandSender player)
                 {
                     Player pplayer = Player.Get(player.SenderId);
-                    if (Permissions.CheckPermission(sender, "murd.set"))
-                    {
-                        var old = Handlers.Server.intruders.FirstOrDefault();
-                        old.Broadcast(3, "You've been set to an innocent!");
-                        old.ClearInventory();
-                        Handlers.Server.bystanders.Add(old);
-                        Handlers.Server.intruders.Clear();
-                        old.Inventory.AddNewItem(ItemType.GunUSP, s: 0, b: 0, o: 0);
-                        Handlers.Server.intruders.Add(Player.Get(arguments.ElementAt(0)));
+                    var old = Handlers.Server.intruders.FirstOrDefault();
+                    old.Broadcast(3, "You've been set to an innocent!");
+                    old.ClearInventory();
+                    Handlers.Server.bystanders.Add(old);
+                    Handlers.Server.intruders.Clear();
+                    old.Inventory.AddNewItem(ItemType.GunUSP, s: 0, b: 0, o: 0);
+                    Handlers.Server.intruders.Add(Player.Get(arguments.ElementAt(0)));
 
-                        response = "Done!";
-                        return true;
-                    }
+                    response = "Done!";
+                    return true;
                 }
                 response = "Use from the game console";
                 return false;

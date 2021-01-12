@@ -4,6 +4,7 @@ using Exiled.API.Enums;
 using Server = Exiled.Events.Handlers.Server;
 using Player = Exiled.Events.Handlers.Player;
 using Map = Exiled.Events.Handlers.Map;
+
 using System;
 
 namespace MurderMystery
@@ -14,6 +15,7 @@ namespace MurderMystery
         public static MurderMystery Instance => LazyInstance.Value;
 
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
+
         private Handlers.Server server;
         private Handlers.Player player;
         private Handlers.Map map;

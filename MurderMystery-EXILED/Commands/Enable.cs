@@ -11,7 +11,7 @@ using RemoteAdmin;
 
 namespace MurderMystery.Commands
 {
-    [CommandHandler(typeof(ClientCommandHandler))]
+    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     class Enable : ICommand
     {
 
@@ -27,10 +27,10 @@ namespace MurderMystery.Commands
                 if (sender is PlayerCommandSender player)
                 {
                     Player pplayer = Player.Get(player.SenderId);
-                    if (Permissions.CheckPermission(sender, "murd.enab"))
-                    {
-                        MurderMystery.Instance.OnEnabled();
-                    }
+                    MurderMystery.Instance.OnEnabled();
+
+                    response = "Enabled gamemode!";
+                    return true;
                 }
                 response = "Use from the game console";
                 return false;

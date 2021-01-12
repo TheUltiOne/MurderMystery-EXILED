@@ -10,7 +10,7 @@ using Exiled.API.Features;
 
 namespace MurderMystery.Commands
 {
-    [CommandHandler(typeof(ClientCommandHandler))]
+    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     class GetMurderer : ICommand
     {
 
@@ -26,11 +26,9 @@ namespace MurderMystery.Commands
                 if (sender is PlayerCommandSender player)
                 {
                     Player pplayer = Player.Get(player.SenderId);
-                    if (Permissions.CheckPermission(sender, "murd.get"))
-                    {
-                        response = $"The murderer is {Handlers.Server.intruders.FirstOrDefault().Nickname}.";
-                        return true;
-                    }
+
+                    response = $"The murderer is {Handlers.Server.intruders.FirstOrDefault().Nickname}.";
+                    return true;
                 }
                 response = "Use from the game console";
                 return false;
