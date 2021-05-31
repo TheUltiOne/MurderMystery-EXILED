@@ -1,6 +1,5 @@
-# Murder Mystery (Fixed)
+# Murder Mystery (not fixed lol gonna update)
 Plugin that adds a Murder Mystery gamemode to SCP: SL!
-This is a rip-off of a plugin I'm currently making, SCP: Secret Funhouse --- More details about this project will be released later
 
 # How the gamemode works:
 There are 2 sides - The SCP Foundation and the CI Inturder.
